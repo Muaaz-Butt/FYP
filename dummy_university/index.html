@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy University Admission</title>
+</head>
+<body>
+
+<h2>Admission Form</h2>
+
+<form id="admissionForm">
+
+  <input id="first_name" placeholder="First Name"><br><br>
+  <input id="father_name" placeholder="Father Name"><br><br>
+
+  <select id="gender">
+    <option>Male</option>
+    <option>Female</option>
+  </select><br><br>
+
+  <input id="matric_marks" type="number" placeholder="Matric Marks"><br><br>
+
+  <button id="nextBtn" type="button">Next</button>
+  <button id="submitBtn" type="submit">Submit</button>
+
+</form>
+
+<script>
+document.getElementById("submitBtn").onclick = function() {
+  alert("Application Submitted Successfully");
+}
+</script>
+
+</body>
+</html>
