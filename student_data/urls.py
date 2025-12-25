@@ -1,12 +1,8 @@
+
 from django.urls import path
-from .views import (
-    PersonalInfoAPIView,
-    AcademicInfoAPIView,
-    DocumentUploadAPIView
-)
+from .views import StudentProfileSubmitAPIView
 
 urlpatterns = [
-    path('personal-info/', PersonalInfoAPIView.as_view()),
-    path('academic-info/', AcademicInfoAPIView.as_view()),
-    path('documents/', DocumentUploadAPIView.as_view()),
+
+    path('profile/', StudentProfileSubmitAPIView.as_view(), name='student-profile-api'),
 ]

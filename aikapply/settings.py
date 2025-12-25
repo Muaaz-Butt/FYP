@@ -33,13 +33,21 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Add CORS and CSRF settings
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # React dev URL
-]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",  # React dev URL
+]
+CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
 # CSRF_COOKIE_NAME = "csrftoken"
-# CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173",
+                        "http://127.0.0.1:5173",
+                        ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -71,7 +79,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'aikapply.urls'
-CORS_ALLOW_ALL_ORIGINS = True
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

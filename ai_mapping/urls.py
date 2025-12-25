@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import apply_to_university
+from .views import generate_automation_steps
 
 urlpatterns = [
-    path('apply-to-university/', apply_to_university, name='apply-to-university'),
+    path('map/', generate_automation_steps, name='apply-to-university'),
 ]
