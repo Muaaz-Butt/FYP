@@ -72,3 +72,45 @@ class StudentProfileSubmitAPIView(APIView):
             return Response(StudentProfileSerializer(profile).data)
         except StudentProfile.DoesNotExist:
             return Response({"message": "Not found"}, status=404)
+        
+
+
+#edit my user using request.user 
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, permissions
+from .models import StudentProfile
+from .serializers import StudentProfileSerializer
+
+class StudentProfileUpdateAPIView(APIView):
+   
+    permission_classes = [permissions.IsAuthenticated]
+
+    authentication_classes = [CsrfExemptSessionAuthentication] 
+
+    def get(self, request):
+     
+        try:
+            profile = StudentProfile.objects.get(user=request.user)
+            serializer = StudentProfileSerializer(profile)
+            return Response(serializer.data)
+        except StudentProfile.DoesNotExist:
+            return Response({"error": "Profile not found"}, status=404)
+
+    def patch(self, request):
+      
+        try:
+            profile = StudentProfile.objects.get(user=request.user)
+    
+            serializer = StudentProfileSerializer(profile, data=request.data, partial=True)
+            
+            if serializer.is_valid():
+                serializer.save()
+                return Response({
+                    "message": "Profile updated successfully!",
+                    "data": serializer.data
+                })
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except StudentProfile.DoesNotExist:
+            return Response({"error": "Profile not found"}, status=404)
