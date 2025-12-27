@@ -65,14 +65,13 @@ def parse_application_form(url):
         field_id = field.get("id")
         field_name = field.get("name")
 
-        # Try to find label text
         label_text = None
         if field_id:
             label = soup.find("label", attrs={"for": field_id})
             if label:
                 label_text = label.text.strip()
 
-        # Extract select options
+   
         options = []
         if field.name == "select":
             for option in field.find_all("option"):
