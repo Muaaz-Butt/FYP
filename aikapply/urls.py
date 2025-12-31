@@ -25,8 +25,9 @@ urlpatterns = [
     path('auth/', include('accounts.urls')), 
     path('student/', include('student_data.urls')),
     path('ai_mapping/', include('ai_mapping.urls')),
-    path("api/", include("api.urls")),
+    # path("api/", include("api.urls")),
     path("automation_engine/", include("automation_engine.urls")),
+    path("api/", include("recommendations.urls")),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
